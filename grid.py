@@ -84,7 +84,7 @@ class Grid:
         elif y < (HEIGHT - 100):
             self.row = 3
         else:
-            self.__row = None
+            self.row = None
 
         self.check_rules()
 
@@ -109,7 +109,7 @@ class Grid:
             y_pos = ((HEIGHT - 100) / 3 * 2) + 30
 
         if game_settings["player"] == "x":
-            self.screen.blit(self.__player_x, (y_pos, x_pos))
+            self.screen.blit(self.player_x, (y_pos, x_pos))
             self.arr[self.row - 1][self.col - 1] = game_settings["player"]
             game_settings["player"] = "o"
         else:
