@@ -18,20 +18,20 @@ def menu_handler(menu_mode, screen, text_font, text_colour, button_colour):
             start_menu = menuSystem.StartMenu(screen, text_font, text_colour, button_colour)
             start_menu.setup()
 
-            while start_menu.Option == None:
+            while start_menu.option == None:
                 start_menu.get_button_objects()
                 start_menu.check_collisions()
                 start_menu.display_buttons()
                 start_menu.is_clicked()
 
-                if start_menu.Option == "Start Game":
+                if start_menu.option == "Start Game":
                     print("Start game")
                     in_menu = False
                     
-                elif start_menu.Option == "Button":
+                elif start_menu.option == "Button":
                     print("Button clicked")
 
-                elif start_menu.Option == "Quit Game":
+                elif start_menu.option == "Quit Game":
                     pygame.quit()
                     quit()
             
@@ -44,7 +44,7 @@ def event_handler(game_grid):
             quit()
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            game_grid.Is_clicked = True
+            game_grid.is_clicked = True
             game_grid.get_location_input()        
 
 def image_setup():
@@ -81,7 +81,7 @@ def main():
     
     game_grid.setup()
     
-    while not game_grid.Reset:
+    while not game_grid.reset:
         event_handler(game_grid)
         
         game_grid.check_draw()
