@@ -2,69 +2,65 @@ import pygame
 
 class StartMenu:
     def __init__(self, screen, font, text_colour, button_colour):
-        self.__screen = screen
-        self.__font = font
-        self.__text_colour = text_colour
-        self.__button_colour = button_colour
-        self.__click = False
-        self.__button_width = 150
-        self.__button_height = 75
-        self.__option = None
-        self.__buttons_xy = None
-        self.__button_objects = None
-        self.__button_command = ["Quit Game", "Start Game"]
-        self.__title = "Tic Tac Toe - by Frazer Mills"
-
-    @property
-    def Option(self):
-        return self.__option
+        self.screen = screen
+        self.font = font
+        self.text_colour = text_colour
+        self.button_colour = button_colour
+        self.click = False
+        self.button_width = 150
+        self.button_height = 75
+        self.option = None
+        self.buttons_xy = None
+        self.button_objects = None
+        self.button_command = ["Quit Game", "Start Game"]
+        self.title = "Tic Tac Toe - by Frazer Mills"
 
     def setup(self):
-        pygame.display.set_caption(f"{self.__title}")
-        self.__screen.fill((0,0,0))
+        pygame.display.set_caption("{0}".format(self.title))
+        self.screen.fill((0,0,0))
         
     def draw_text(self, text, x, y):
-        textobj = self.__font.render(text, 1, self.__text_colour)
+        textobj = self.font.render(text, 1, self.text_colour)
         textrect = textobj.get_rect()
         textrect.center = (x, y)
-        self.__screen.blit(textobj, textrect)
+        self.screen.blit(textobj, textrect)
 
     def get_button_objects(self):
-        self.__buttons_xy = [
-            ((self.__screen.get_width() // 2) - (self.__button_width // 2), (self.__screen.get_width() // 2) - i)
+        self.buttons_xy = [
+            ((self.screen.get_width() // 2) - (self.button_width // 2), (self.screen.get_width() // 2) - i)
             for i in range(-100, 100, 100)
         ]
 
-        self.__button_objects = {
-            f"button {i}": pygame.Rect(self.__buttons_xy[i][0], self.__buttons_xy[i][1], self.__button_width, self.__button_height)
-            for i, button in enumerate(self.__buttons_xy)
+        self.button_objects = {
+            f"{0}".format(button {i}): pygame.Rect(self.buttons_xy[i][0], self.buttons_xy[i][1], self.button_width, self.button_height)
+            for i, button in enumerate(self.buttons_xy)
         }
 
     def check_collisions(self):
         mousex, mousey = pygame.mouse.get_pos()
         
-        if self.__button_objects[f"button 0"].collidepoint((mousex, mousey)):
-            if self.__click:
-                self.__option = self.__button_command[0]
+        if self.button_objects[f"button 0"].collidepoint((mousex, mousey)):
+            if self.click:
+                self.option = self.button_command[0]
                 
-        elif self.__button_objects[f"button 1"].collidepoint((mousex, mousey)):
-            if self.__click:
-                self.__option = self.__button_command[1]
+        elif self.button_objects["button 1"].collidepoint((mousex, mousey)):
+            if self.click:
+                self.option = self.button_command[1]
                 
         
     def display_buttons(self):
         
-        for i, button_object in enumerate(self.__button_objects):
-            pygame.draw.rect(self.__screen, self.__button_colour, self.__button_objects[button_object])
+        for i, button_object in enumerate(self.button_objects):
+            pygame.draw.rect(self.screen, self.button_colour, self.button_objects[button_object])
         
-        self.draw_text(f"{self.__title}", self.__screen.get_width() // 2, self.__screen.get_height() // 4)
-        self.draw_text(f"{self.__button_command[0]}", self.__buttons_xy[0][0] + 75, self.__buttons_xy[0][1] + 35)
-        self.draw_text(f"{self.__button_command[1]}", self.__buttons_xy[1][0] + 75, self.__buttons_xy[1][1] + 35)
+        self.draw_text("{0}".format(self.title), self.screen.get_width() // 2, self.screen.get_height() // 4)
+        self.draw_text("{0}".format(self.button_command[0]), self.buttons_xy[0][0] + 75, self.buttons_xy[0][1] + 35)
+        self.draw_text("{0}".format(self.button_command[1]), self.buttons_xy[1][0] + 75, self.buttons_xy[1][1] + 35)
 
         pygame.display.update()
 
     def is_clicked(self):
-        self.__click = False
+        self.click = False
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -72,4 +68,4 @@ class StartMenu:
                     
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == True:
-                    self.__click = True
+                    self.click = True
