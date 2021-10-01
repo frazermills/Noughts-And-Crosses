@@ -32,7 +32,7 @@ class StartMenu:
         ]
 
         self.button_objects = {
-            f"{0}".format(button {i}): pygame.Rect(self.buttons_xy[i][0], self.buttons_xy[i][1], self.button_width, self.button_height)
+            "{0}".format(button [i]): pygame.Rect(self.buttons_xy[i][0], self.buttons_xy[i][1], self.button_width, self.button_height)
             for i, button in enumerate(self.buttons_xy)
         }
 
