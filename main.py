@@ -64,7 +64,6 @@ def reset_game(game_grid):
     game_settings["player"] = "x"
     
     time.sleep(3)
-    main()
 
 def main():
     pygame.init()
@@ -97,4 +96,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
