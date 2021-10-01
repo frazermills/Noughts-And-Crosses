@@ -39,13 +39,11 @@ class StartMenu:
     def check_collisions(self):
         mousex, mousey = pygame.mouse.get_pos()
         
-        if self.button_objects[f"button 0"].collidepoint((mousex, mousey)):
-            if self.click:
-                self.option = self.button_command[0]
+        if self.click:
+            self.option = self.button_command[0]
                 
-        elif self.button_objects["button 1"].collidepoint((mousex, mousey)):
-            if self.click:
-                self.option = self.button_command[1]
+        if self.click:
+            self.option = self.button_command[1]
                 
         
     def display_buttons(self):
